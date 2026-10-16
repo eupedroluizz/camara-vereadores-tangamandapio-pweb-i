@@ -52,6 +52,28 @@
         <p id="mensagem-busca" class="mensagem-busca" aria-live="polite"></p>
     </header>
 
+    <main>
+
+        <section class="secao-noticias conteiner" aria-labelledby="titulo-noticias">
+            <h2 id="titulo-noticias" class="titulo-secao">Notícias</h2>
+            <p class="subtitulo-secao">Acompanhe tudo o que acontece na Câmara Municipal de Tangamandápio</p>
+
+            <div class="filtro">
+                <label for="filtro-categoria">Filtrar por categoria</label>
+                <select id="filtro-categoria">
+                    <option value="todas">Todas as categorias</option>
+                    <option value="Notícias do Legislativo">Notícias do Legislativo</option>
+                    <option value="Infraestrutura">Infraestrutura</option>
+                    <option value="Educação">Educação</option>
+                </select>
+            </div>
+
+            <p id="contador-noticias" class="contador" aria-live="polite"></p>
+
+            <div id="grade-noticias" class="grade-noticias"></div>
+        </section>
+    </main>
+
     <footer class="rodape-principal">
         <div class="conteiner grade-rodape">
             <div class="coluna-rodape">
