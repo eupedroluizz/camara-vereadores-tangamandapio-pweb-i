@@ -177,6 +177,31 @@ main {
     background-color: #1b5e20;
 }
 
+.voltar-topo {
+    display: none;
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background-color: #2e7d32;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.voltar-topo.visivel {
+    display: block;
+}
+
+.voltar-topo:hover, 
+.voltar-topo:focus {
+    background-color: #1b5e20;
+}
+
 .rodape-principal {
     background-color: #1e3323;
     color: #d1d5db;
