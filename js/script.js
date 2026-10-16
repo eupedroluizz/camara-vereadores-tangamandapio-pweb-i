@@ -20,3 +20,26 @@ botaoDiminuir.addEventListener("click", () => {
         aplicarTamanhoFonte();
     }
 });
+
+const botaoMenu = document.querySelector("#botao-menu");
+const listaNavegacao = document.querySelector("#lista-navegacao");
+
+botaoMenu.addEventListener("click", () => {
+    listaNavegacao.classList.toggle("aberto");
+
+    if (listaNavegacao.classList.contains("aberto")) {
+        botaoMenu.setAttribute("aria-expanded", "true");
+    } else {
+        botaoMenu.setAttribute("aria-expanded", "false");
+    }
+});
+
+const voltarTopo = document.querySelector("#voltar-topo");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        voltarTopo.classList.add("visivel");
+    } else {
+        voltarTopo.classList.remove("visivel");
+    }
+});
