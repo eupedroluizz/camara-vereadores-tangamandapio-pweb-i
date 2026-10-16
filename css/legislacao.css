@@ -1,0 +1,72 @@
+.filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 400px;
+    margin: 0 auto 1rem;
+}
+
+.filtro select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.grade-leis {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cartao-lei {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+}
+
+.topo-cartao-lei {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.etiqueta-lei {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.data-lei {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.cartao-lei h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+    color: #0e2041;
+}
+
+.cartao-lei .botao-primario {
+    margin-top: 1rem;
+}
+
+.detalhes-lei {
+    display: none;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #ccc;
+    font-size: 0.95rem;
+}
+
+.detalhes-lei.aberto {
+    display: block;
+}

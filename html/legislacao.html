@@ -51,6 +51,34 @@
         <p id="mensagem-busca" class="mensagem-busca" aria-live="polite"></p>
     </header>
 
+    <main>
+        <nav class="caminho-navegacao conteiner" aria-label="Navegação estrutural">
+            <a href="index.html">Início</a> / <span>Legislação</span>
+        </nav>
+
+        <section class="conteiner" aria-labelledby="titulo-legislacao">
+            <h2 id="titulo-legislacao" class="titulo-secao">Legislação Municipal</h2>
+            <p class="subtitulo-secao">Pesquise e consulte as normas vigentes em Tangamandápio</p>
+
+            <div class="filtro">
+                <label for="filtro-tipo-lei">Tipo de norma</label>
+                <select id="filtro-tipo-lei">
+                    <option value="todas">Todas as normas</option>
+                    <option value="Lei Ordinária">Leis Ordinárias</option>
+                    <option value="Decreto Legislativo">Decretos Legislativos</option>
+                    <option value="Resolução">Resoluções</option>
+                </select>
+
+                <label for="busca-lei">Pesquisar por assunto ou palavra-chave</label>
+                <input id="busca-lei" type="text" placeholder="Ex.: fadiga, bicicleta, escola, aluguel...">
+            </div>
+
+            <p id="contador-leis" class="contador" aria-live="polite"></p>
+
+            <div id="grade-leis" class="grade-leis"></div>
+        </section>
+    </main>
+
     <footer class="rodape-principal">
         <div class="conteiner grade-rodape">
             <div class="coluna-rodape">
