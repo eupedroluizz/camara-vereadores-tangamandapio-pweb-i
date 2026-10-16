@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câmara Municipal de Tangamandápio</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Site Oficial da Câmara Municipal de Tangamandápio. Acompanhe as atividades dos vereadores, últimas notícias e portal da transparência.">
+</head>
+<body>
+
+    <header class="cabecalho-principal">
+        <div class="barra-topo conteiner">
+
+            <div class="logomarca">
+                <div class="logomarca-texto">
+                    <h1>Câmara Municipal de Tangamandápio</h1>
+                </div>
+            </div>
+
+            <div class="caixa-busca">
+                <form class="formulario-busca" action="#" method="GET">
+                    <label class="oculto-visualmente" for="campo-busca">Buscar no portal</label>
+                    <input id="campo-busca" type="search" name="q" placeholder="Buscar no portal...">
+                    <button type="submit" aria-label="Realizar busca">
+                        <img class="icone-lupa" src="assets/img/lupa.png" width="23" height="23" alt="Ícone de Lupa">
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <nav class="navegacao-principal" aria-label="Navegação principal">
+            <ul class="lista-navegacao conteiner">
+                <li><a class="ativo" href="#">Início</a></li>
+                <li><a href="#">Institucional</a></li>
+                <li><a href="#">Notícias</a></li>
+                <li><a href="#vereadores">Vereadores</a></li>
+                <li><a href="#">Mesa Diretora</a></li>
+                <li><a href="#">Legislação</a></li>
+                <li><a href="#">Transparência</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="vereadores" class="secao-vereadores conteiner" aria-labelledby="titulo-vereadores">
+            <h2 id="titulo-vereadores" class="titulo-secao">Nossos Vereadores</h2>
+            <p class="subtitulo-secao">Conheça os representantes do poder legislativo municipal</p>
+
+            <div class="grade-vereadores">
+                <article class="cartao-vereador">
+                    <img class="img-responsiva" src="assets/img/jaiminho.jpeg" alt="Foto do Vereador Jaiminho">
+                    <div class="info-vereador">
+                        <h3>Jaiminho, O Carteiro</h3>
+                        <a class="botao-primario" href="#">Ver Perfil</a>
+                    </div>
+                </article>
+
+                <article class="cartao-vereador">
+                    <img class="img-responsiva" src="assets/img/seu_barriga.jpg" alt="Foto do Vereador Seu Barriga">
+                    <div class="info-vereador">
+                        <h3>Seu Barriga</h3>
+                        <a class="botao-primario" href="#">Ver Perfil</a>
+                    </div>
+                </article>
+
+                <article class="cartao-vereador">
+                    <img class="img-responsiva" src="assets/img/seu_madruga.png" alt="Foto do Vereador Seu Madruga">
+                    <div class="info-vereador">
+                        <h3>Seu Madruga</h3>
+                        <a class="botao-primario" href="#">Ver Perfil</a>
+                    </div>
+                </article>
+
+                <article class="cartao-vereador">
+                    <img class="img-responsiva" src="assets/img/professor_girafales.png" alt="Foto do Vereador Professor Girafales">
+                    <div class="info-vereador">
+                        <h3>Professor Girafales</h3>
+                        <a class="botao-primario" href="#">Ver Perfil</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="secao-noticias conteiner" aria-labelledby="titulo-noticias">
+            <h2 id="titulo-noticias" class="titulo-secao">Últimas Notícias</h2>
+            <p class="subtitulo-secao">Fique por dentro das atividades da Câmara Municipal para evitar a fadiga</p>
+
+            <div class="grade-noticias">
+                <article class="cartao-noticia">
+                    <img class="imagem-noticia img-responsiva" src="assets/img/news1.jpg" alt="Fotografia de crianças evitando a fadiga na escola ">
+                    <div class="conteudo-noticia">
+                        <span class="data-noticia">23/09/2026</span> | <span class="categoria-noticia">Notícias do Legislativo</span>
+                        <h3><a href="#">Projeto de Lei institui o "Dia Municipal de Evitar a Fadiga"</a></h3>
+                        <p>A câmara aprovou por unanimidade o novo feriado municipal, incentivando o descanso dos trabalhadores locais.</p>
+                    </div>
+                </article>
+
+                <article class="cartao-noticia">
+                    <img class="imagem-noticia img-responsiva" src="assets/img/news2.jpeg" alt="Fotografia da praça principal de Tangamandápio com novas bicicletas">
+                    <div class="conteudo-noticia">
+                        <span class="data-noticia">21/09/2026</span> | <span class="categoria-noticia">Infraestrutura</span>
+                        <h3><a href="#">Nova frota de bicicletas para a equipe dos correios</a></h3>
+                        <p>O poder legislativo municipal aprovou o orçamento para aquisição de bicicletas com marcha para facilitar as entregas.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="secao-numeros fundo-claro">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Câmara em Números</h2>
+                <p class="subtitulo-secao">Transparência e eficiência na gestão pública de Tangamandápio</p>
+
+                <div class="grade-numeros">
+                    <div class="cartao-numero">
+                        <span class="valor-numero">42</span>
+                        <p class="descricao-numero">Projetos de Lei aprovados em 2026</p>
+                    </div>
+                    <div class="cartao-numero">
+                        <span class="valor-numero">105</span>
+                        <p class="descricao-numero">Cidadãos atendidos pela Ouvidoria</p>
+                    </div>
+                    <div class="cartao-numero">
+                        <span class="valor-numero">R$ 15M</span>
+                        <p class="descricao-numero">Orçamento anual da Câmara</p>
+                    </div>
+                    <div class="cartao-numero">
+                        <span class="valor-numero">28</span>
+                        <p class="descricao-numero">Decretos publicados em 2026</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape-principal">
+        <div class="conteiner grade-rodape">
+            <div class="coluna-rodape">
+                <h4>Sobre a Câmara Municipal</h4>
+                <p>Tangamandápio é uma cidadezinha aconchegante e pacata. A Câmara Municipal é o poder legislativo do município, responsável por elaborar leis e fiscalizar o executivo, sempre procurando evitar a fadiga.</p>
+            </div>
+
+            <div class="coluna-rodape">
+                <h4>Links úteis</h4>
+                <ul>
+                    <li><a href="#">Portal da Transparência</a></li>
+                    <li><a href="#">e-SIC</a></li>
+                    <li><a href="#">Diário Oficial</a></li>
+                    <li><a href="#">Licitações</a></li>
+                    <li><a href="#">Ouvidoria</a></li>
+                </ul>
+            </div>
+
+            <div class="coluna-rodape">
+                <h4>Transparência</h4>
+                <ul>
+                    <li><a href="#">LGPD</a></li>
+                    <li><a href="#">Acesso à Informação</a></li>
+                    <li><a href="#">Carta de Serviços</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+
+            <div class="coluna-rodape">
+                <h4>Contato</h4>
+                <address>
+                    <p>Praça Principal, S/N - Centro<br>Tangamandápio - MX</p>
+                    <p>(00) 1234-5678</p>
+                    <p><a href="mailto:contato@tangamandapio.leg.mx">contato@tangamandapio.leg.mx</a></p>
+                    <p>Terça a Quinta, 10h às 13h</p>
+                </address>
+            </div>
+        </div>
+        <div class="rodape-inferior">
+            <p>&copy; 2026 Câmara Municipal de Tangamandápio. Todos os direitos reservados para evitar a fadiga.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
