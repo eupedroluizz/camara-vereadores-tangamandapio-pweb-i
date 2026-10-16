@@ -183,7 +183,8 @@ main {
 }
 
 .resultado-busca {
-    box-shadow: 0 0 0 4px #ffc107;
+    box-shadow: 0 0 0 4px #f9a825 !important;
+    outline: 3px solid #f9a825;
 }
 
 .voltar-topo {

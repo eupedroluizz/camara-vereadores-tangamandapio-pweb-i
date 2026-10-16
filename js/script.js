@@ -70,18 +70,24 @@ formularioBusca.addEventListener("submit", (event) => {
         return;
     }
 
-    const cartoes = document.querySelectorAll("main article");
+    const cartoes = document.querySelectorAll("main article, .cartao-numero, .tabela-dados tbody tr");
     let encontrados = 0;
 
     for (const cartao of cartoes) {
-        const tituloElemento = cartao.querySelector("h3");
-        if (!tituloElemento) {
-            continue;
-        }
-        const titulo = tituloElemento.textContent.toLowerCase();
+        const img = cartao.querySelector("img");
+        const textoAlt = img ? (img.getAttribute("alt") || "") : "";
 
-        if (titulo.indexOf(termo) !== -1) {
+        const secaoPai = cartao.closest("section");
+        const tituloSecao = secaoPai && secaoPai.querySelector("h2") ? secaoPai.querySelector("h2").textContent : "";
+
+        const conteudoCompleto = `${cartao.textContent} ${textoAlt} ${tituloSecao}`.toLowerCase();
+
+        if (conteudoCompleto.includes(termo)) {
             cartao.classList.add("resultado-busca");
+
+            if (encontrados === 0) {
+                cartao.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
             encontrados++;
         }
     }
