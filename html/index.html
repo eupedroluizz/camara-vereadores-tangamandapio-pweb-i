@@ -10,7 +10,14 @@
 </head>
 <body>
 
-    <header class="cabecalho-principal">
+    <header id="topo" class="cabecalho-principal">
+        <div class="barra-acessibilidade">
+            <div class="conteiner">
+                <button id="diminuir-fonte" type="button" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button id="aumentar-fonte" type="button" aria-label="Aumentar tamanho da fonte">A+</button>
+            </div>
+        </div>
+
         <div class="barra-topo conteiner">
 
             <div class="logomarca">
@@ -31,7 +38,8 @@
         </div>
 
         <nav class="navegacao-principal" aria-label="Navegação principal">
-            <ul class="lista-navegacao conteiner">
+            <button id="botao-menu" class="botao-menu" type="button" aria-expanded="false" aria-controls="lista-navegacao">Menu</button>
+            <ul id="lista-navegacao" class="lista-navegacao conteiner">
                 <li><a class="ativo" href="#">Início</a></li>
                 <li><a href="#">Institucional</a></li>
                 <li><a href="#">Notícias</a></li>
@@ -41,6 +49,7 @@
                 <li><a href="#">Transparência</a></li>
             </ul>
         </nav>
+        <p id="mensagem-busca" class="mensagem-busca" aria-live="polite"></p>
     </header>
 
     <main>

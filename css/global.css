@@ -32,6 +32,33 @@ ul {
     margin: 0 auto;
 }
 
+.barra-acessibilidade {
+    background-color: #1b5e20;
+}
+
+.barra-acessibilidade .conteiner {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0;
+}
+
+.barra-acessibilidade button {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.barra-acessibilidade button:hover, 
+.barra-acessibilidade button:focus {
+    background-color: #2e7d32;
+}
+
 :focus {
     outline: none;
     box-shadow: 0 0 5px 2px #4caf50;
@@ -112,6 +139,10 @@ ul {
 .lista-navegacao a:focus, 
 .lista-navegacao a.ativo {
     background-color: #1b5e20;
+}
+
+.botao-menu {
+    display: none;
 }
 
 main {
@@ -208,12 +239,29 @@ main {
         text-align: center;
     }
 
-    .lista-navegacao {
-        flex-direction: column;
+    .botao-menu {
+        display: block;
         width: 100%;
-        text-align: center;
-        gap: 0;
+        background-color: #2e7d32;
+        color: #ffffff;
+        border: none;
+        padding: 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
     }
+
+    .lista-navegacao {
+         display: none;
+         flex-direction: column;
+         width: 100%;
+         text-align: center;
+         gap: 0;
+     }
+
+     .lista-navegacao.aberto {
+         display: flex;
+     }
 
     .lista-navegacao li {
         border-bottom: 1px solid rgba(255,255,255,0.1);
