@@ -52,6 +52,51 @@
         <p id="mensagem-busca" class="mensagem-busca" aria-live="polite"></p>
     </header>
 
+    <main>
+
+        <section class="secao-ouvidoria conteiner" aria-labelledby="titulo-ouvidoria">
+            <h2 id="titulo-ouvidoria" class="titulo-secao">Ouvidoria</h2>
+            <p class="subtitulo-secao">Envie sua sugestão, reclamação, elogio ou pedido de informação para a Câmara Municipal</p>
+
+            <form id="formulario-ouvidoria" class="formulario-ouvidoria" action="#" method="POST">
+                <p id="dica" class="dica" aria-live="polite"></p>
+
+                <label for="nome">Nome</label>
+                <input id="nome" type="text" name="nome" placeholder="Ex.: Maria da Silva">
+
+                <label for="email">E-mail</label>
+                <input id="email" type="email" name="email" placeholder="seunome@email.com">
+
+                <label for="assunto">Assunto</label>
+                <select id="assunto" name="assunto">
+                    <option value="">Selecione</option>
+                    <option value="Sugestão">Sugestão</option>
+                    <option value="Reclamação">Reclamação</option>
+                    <option value="Elogio">Elogio</option>
+                    <option value="Denúncia">Denúncia</option>
+                    <option value="Pedido de informação">Pedido de informação</option>
+                </select>
+
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="6" maxlength="500"></textarea>
+                <span id="contador-caracteres" class="contador-caracteres">0/500 caracteres</span>
+
+                <p id="mensagem-formulario" class="mensagem-formulario" aria-live="polite"></p>
+
+                <div class="botoes-formulario">
+                    <button class="botao-primario" type="submit">Enviar</button>
+                    <button class="botao-secundario" type="reset">Limpar</button>
+                </div>
+            </form>
+
+            <div class="secao-manifestacoes">
+                <h3>Minhas manifestações</h3>
+                <p id="sem-manifestacoes">Você ainda não enviou nenhuma manifestação.</p>
+                <ul id="lista-manifestacoes" class="lista-manifestacoes"></ul>
+            </div>
+        </section>
+    </main>
+
     <footer class="rodape-principal">
         <div class="conteiner grade-rodape">
             <div class="coluna-rodape">

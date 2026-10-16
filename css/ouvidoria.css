@@ -1,0 +1,96 @@
+.formulario-ouvidoria {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.formulario-ouvidoria label {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.formulario-ouvidoria input,
+.formulario-ouvidoria select,
+.formulario-ouvidoria textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.formulario-ouvidoria .campo-erro {
+    border: 2px solid #c62828;
+}
+
+.dica {
+    color: #2e7d32;
+    font-size: 0.9rem;
+}
+
+.contador-caracteres {
+    text-align: right;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.mensagem-formulario {
+    font-weight: bold;
+}
+
+.mensagem-formulario.erro {
+    color: #c62828;
+}
+
+.mensagem-formulario.sucesso {
+    color: #2e7d32;
+}
+
+.botoes-formulario {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.secao-manifestacoes {
+    max-width: 600px;
+    margin: 2rem auto 0;
+}
+
+.secao-manifestacoes h3 {
+    color: #0e2041;
+    margin-bottom: 1rem;
+}
+
+.lista-manifestacoes li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background-color: #ffffff;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #2e7d32;
+    border-radius: 4px;
+}
+
+.botao-remover {
+    background-color: #c62828;
+    color: #ffffff;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .botoes-formulario {
+        flex-direction: column;
+    }
+}
