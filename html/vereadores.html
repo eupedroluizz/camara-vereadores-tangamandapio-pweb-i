@@ -52,6 +52,27 @@
         <p id="mensagem-busca" class="mensagem-busca" aria-live="polite"></p>
     </header>
 
+    <main>
+
+        <section id="vereadores" class="secao-vereadores conteiner" aria-labelledby="titulo-vereadores">
+            <h2 id="titulo-vereadores" class="titulo-secao">Vereadores</h2>
+            <p class="subtitulo-secao">Conheça os representantes do poder legislativo de Tangamandápio</p>
+
+            <div class="filtro">
+                <label for="filtro-vereador">Pesquisar vereador pelo nome</label>
+                <input id="filtro-vereador" type="text" placeholder="Ex.: Madruga">
+                <div class="opcao-favoritos">
+                    <input id="somente-favoritos" type="checkbox">
+                    <label for="somente-favoritos">Mostrar apenas favoritos</label>
+                </div>
+            </div>
+
+            <p id="contador-vereadores" class="contador" aria-live="polite"></p>
+
+            <div id="grade-vereadores" class="grade-vereadores"></div>
+        </section>
+    </main>
+
     <footer class="rodape-principal">
         <div class="conteiner grade-rodape">
             <div class="coluna-rodape">
