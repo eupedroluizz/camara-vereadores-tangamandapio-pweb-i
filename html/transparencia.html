@@ -51,6 +51,71 @@
         <p id="mensagem-busca" class="mensagem-busca" aria-live="polite"></p>
     </header>
 
+    <main>
+        <nav class="caminho-navegacao conteiner" aria-label="Navegação estrutural">
+            <a href="index.html">Início</a> / <span>Transparência</span>
+        </nav>
+
+        <section class="conteiner" aria-labelledby="titulo-transparencia">
+            <h2 id="titulo-transparencia" class="titulo-secao">Portal da Transparência</h2>
+            <p class="subtitulo-secao">Acesso à informação, prestação de contas e controle social do poder legislativo</p>
+
+            <h3 class="titulo-secao" style="font-size: 1.5rem; margin-top: 1.5rem;">Câmara em Números</h3>
+            <p class="subtitulo-secao">Transparência e eficiência na gestão pública de Tangamandápio</p>
+
+            <div class="grade-numeros">
+                <div class="cartao-numero">
+                    <span class="valor-numero">42</span>
+                    <p class="descricao-numero">Projetos de Lei aprovados em 2026</p>
+                </div>
+                <div class="cartao-numero">
+                    <span class="valor-numero">105</span>
+                    <p class="descricao-numero">Cidadãos atendidos pela Ouvidoria</p>
+                </div>
+                <div class="cartao-numero">
+                    <span class="valor-numero">R$ 15M</span>
+                    <p class="descricao-numero">Orçamento anual da Câmara</p>
+                </div>
+                <div class="cartao-numero">
+                    <span class="valor-numero">28</span>
+                    <p class="descricao-numero">Decretos publicados em 2026</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="conteiner" style="margin-top: 2rem;" aria-labelledby="titulo-licitacoes">
+            <h2 id="titulo-licitacoes" class="titulo-secao">Demonstrativo de Licitações Recentes</h2>
+            <p class="subtitulo-secao">Acompanhe as contratações públicas e aquisições de materiais</p>
+
+            <div class="filtro">
+                <label for="filtro-status-licitacao">Filtrar por status</label>
+                <select id="filtro-status-licitacao">
+                    <option value="todos">Todos os status</option>
+                    <option value="Concluída">Concluída</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Homologada">Homologada</option>
+                </select>
+            </div>
+
+            <p id="contador-licitacoes" class="contador" aria-live="polite"></p>
+
+            <div class="tabela-responsiva">
+                <table class="tabela-dados">
+                    <thead>
+                        <tr>
+                            <th>Processo</th>
+                            <th>Objeto</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-licitacoes"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
     <footer class="rodape-principal">
         <div class="conteiner grade-rodape">
             <div class="coluna-rodape">
