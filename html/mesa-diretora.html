@@ -51,6 +51,51 @@
         <p id="mensagem-busca" class="mensagem-busca" aria-live="polite"></p>
     </header>
 
+    <main>
+        <nav class="caminho-navegacao conteiner" aria-label="Navegação estrutural">
+            <a href="index.html">Início</a> / <span>Mesa Diretora</span>
+        </nav>
+
+        <section class="conteiner" aria-labelledby="titulo-mesa">
+            <h2 id="titulo-mesa" class="titulo-secao">Mesa Diretora (Biênio 2025-2026)</h2>
+            <p class="subtitulo-secao">Órgão responsável pela condução dos trabalhos legislativos e da gestão administrativa</p>
+
+            <div class="filtro">
+                <label for="filtro-cargo">Filtrar por cargo</label>
+                <select id="filtro-cargo">
+                    <option value="todos">Todos os cargos</option>
+                    <option value="Presidente">Presidente</option>
+                    <option value="Vice-presidente">Vice-presidente</option>
+                    <option value="1º Secretário">1º Secretário</option>
+                    <option value="2º Secretário">2º Secretário</option>
+                </select>
+            </div>
+
+            <p id="contador-mesa" class="contador" aria-live="polite"></p>
+
+            <div id="grade-mesa" class="grade-vereadores"></div>
+        </section>
+
+        <section class="secao-numeros fundo-claro" aria-labelledby="titulo-competencias">
+            <div class="conteiner">
+                <h2 id="titulo-competencias" class="titulo-secao">Competências Regimentais</h2>
+                <p class="subtitulo-secao">Principais atribuições da Mesa Diretora da Câmara</p>
+
+                <div class="grade-duas-colunas">
+                    <article class="cartao-bloco">
+                        <h3>Função Legislativa</h3>
+                        <p>Compete à Mesa propor privativamente projetos que tratem da organização administrativa da Câmara, abertura de créditos adicionais ao seu orçamento e fixação de remuneração dos servidores do legislativo.</p>
+                    </article>
+
+                    <article class="cartao-bloco">
+                        <h3>Função Administrativa</h3>
+                        <p>Responsável pela administração dos bens municipais sob guarda da Câmara, gerenciamento dos serviços de expediente e protocolo, controle contábil e autorização de licitações oficiais.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer class="rodape-principal">
         <div class="conteiner grade-rodape">
             <div class="coluna-rodape">
