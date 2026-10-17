@@ -1,0 +1,269 @@
+Commit: de3dbbb8f8491c8c12aa11ebcdb733746d245a68
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 09:03:25 -0300
+
+    coloca o que foi feito no trabalho 01 no repositório
+
+ assets/img/jaiminho.jpeg                  | Bin 0 -> 24057 bytes
+ assets/img/logo_cidade.png                | Bin 0 -> 68278 bytes
+ assets/img/lupa.png                       | Bin 0 -> 7492 bytes
+ assets/img/news1.jpg                      | Bin 0 -> 26539 bytes
+ assets/img/news2.jpeg                     | Bin 0 -> 1097073 bytes
+ assets/img/professor_girafales.png        | Bin 0 -> 104993 bytes
+ assets/img/professor_girafales_grande.png | Bin 0 -> 221847 bytes
+ assets/img/seu_barriga.jpg                | Bin 0 -> 38466 bytes
+ assets/img/seu_barriga_grande.jpg         | Bin 0 -> 48185 bytes
+ assets/img/seu_madruga.png                | Bin 0 -> 119956 bytes
+ index.html                                | 182 ++++++++++++++++
+ relatorio.pdf                             | Bin 0 -> 124522 bytes
+ style.css                                 | 334 ++++++++++++++++++++++++++++++
+ trabalho-01.zip                           | Bin 0 -> 1863715 bytes
+ 14 files changed, 516 insertions(+)
+
+Commit: ec419d21164821365253665823f1be13ea23a9e1
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 09:42:48 -0300
+
+    organiza o trabalho em pastas e arquivos pra facilitara divisa de o que cada envolvido faz e onde
+
+ style.css => css/global.css | 109 --------------------------
+ css/index.css               | 110 ++++++++++++++++++++++++++
+ css/institucional.css       |   0
+ css/legislacao.css          |   0
+ css/mesa-diretora.css       |   0
+ css/noticias.css            |   0
+ css/ouvidoria.css           |   0
+ css/transparencia.css       |   0
+ css/vereadores.css          |   0
+ html/index.html             | 183 ++++++++++++++++++++++++++++++++++++++++++++
+ html/institucional.html     |   0
+ html/legislacao.html        |   0
+ html/mesa-diretora.html     |   0
+ html/noticias.html          |   0
+ html/ouvidoria.html         |   0
+ html/transparencia.html     |   0
+ html/vereadores.html        |   0
+ index.html                  | 175 +-----------------------------------------
+ js/inicio.js                |   0
+ js/institucional.js         |   0
+ js/interacoes-base.js       |   0
+ js/legislacao.js            |   0
+ js/mesa-diretora.js         |   0
+ js/noticias.js              |   0
+ js/ouvidoria.js             |   0
+ js/script.js                |   0
+ js/transparencia.js         |   0
+ js/vereadores.js            |   0
+ relatorio.pdf               | Bin 124522 -> 0 bytes
+ trabalho-01.zip             | Bin 1863715 -> 0 bytes
+ 30 files changed, 295 insertions(+), 282 deletions(-)
+
+Commit: 6e4fe937c021ee2d71bd9cae3709a7333081c5e6
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 09:44:36 -0300
+
+    remove arquivo de interacoes genericas, sera melhor cada um do grupo cuidar das suas interacoes
+
+ js/interacoes-base.js | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+Commit: d005e13708c86244e58936fa0b47b694aabc8c93
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 10:38:12 -0300
+
+    adiciona botoes pra acessibilidade de tamanho da fonte e botao de menu para mobile
+
+ css/global.css  | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ html/index.html | 13 +++++++++++--
+ 2 files changed, 63 insertions(+), 6 deletions(-)
+
+Commit: 1aee643a4f0df7f984fc0aa06935052c8eea4ff8
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 10:42:09 -0300
+
+    insere faixa informativa de sessao plenaria na pagina inicial
+
+ css/index.css   | 21 +++++++++++++++++++++
+ html/index.html |  4 ++++
+ 2 files changed, 25 insertions(+)
+
+Commit: 0dbc472dce96601c90db7843cfc1f09465a245d8
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 10:51:37 -0300
+
+    adiciona botao e logica do botao voltar ao topo junto com o css do mesmo
+
+ css/global.css  | 25 +++++++++++++++++++++++++
+ html/index.html |  2 ++
+ 2 files changed, 27 insertions(+)
+
+Commit: 6cd467cddb07924fcc3e1bc00aa371658e10ed57
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 11:44:58 -0300
+
+    padroniza estrutura base dos arquivos html com cabecalho, navegacao e rodape para facilitar o restante
+
+ html/institucional.html | 102 +++++++++++++++++++++++++++++++++++++++++++++++
+ html/legislacao.html    | 102 +++++++++++++++++++++++++++++++++++++++++++++++
+ html/mesa-diretora.html | 102 +++++++++++++++++++++++++++++++++++++++++++++++
+ html/noticias.html      | 103 ++++++++++++++++++++++++++++++++++++++++++++++++
+ html/ouvidoria.html     | 103 ++++++++++++++++++++++++++++++++++++++++++++++++
+ html/transparencia.html | 102 +++++++++++++++++++++++++++++++++++++++++++++++
+ html/vereadores.html    | 103 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 7 files changed, 717 insertions(+)
+
+Commit: afb5c4b33ecc2af3450e53eabbbf66db5caab85c
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 13:04:55 -0300
+
+    adiciona pagina tranparencia
+
+ css/transparencia.css   | 88 +++++++++++++++++++++++++++++++++++++++++++++++++
+ html/transparencia.html | 67 ++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 154 insertions(+), 1 deletion(-)
+
+Commit: a66f466be075348d3324fb2c52239bf3c4e0cc44
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 13:19:48 -0300
+
+    adiciona funcionalidade de aumentar e diminuir o tamanho da fonte no site
+
+ html/index.html |  2 ++
+ js/script.js    | 22 ++++++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+
+Commit: 3592f1fd52384d34da1516de2c86587d7fd39eb8
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 13:32:12 -0300
+
+    adiciona o abre e fecha do menu mobile e a funcionalidade de detectar se o botao de voltar ao topo estara visivel e funcionando ou nao
+
+ js/script.js | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+Commit: e2e43bcbc174d5bb57e43de02396539a4da34e33
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 13:59:53 -0300
+
+    implementa logica de busca no site
+
+ css/global.css  | 11 ++++++++++-
+ html/index.html |  2 +-
+ js/script.js    | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 67 insertions(+), 2 deletions(-)
+
+Commit: e191a408c3fead3ede4c512f7323fb6e5ed290f2
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 14:12:08 -0300
+
+    melhora a pesquisa para ir atras de texto em mais elementos no site e ajeita erro em destacar o que achou
+
+ css/global.css |  3 ++-
+ js/script.js   | 20 +++++++++++++-------
+ 2 files changed, 15 insertions(+), 8 deletions(-)
+
+Commit: 724e60e9cd0288521329c8539a499dc292f813e1
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 14:17:41 -0300
+
+    ajeita os links da pagina principal
+
+ html/index.html | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+Commit: aa399f14997491c91acc623d5812bf3f54757dcb
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 14:23:34 -0300
+
+    apenas adiciona a logica de remocao do aviso de proxima secao
+
+ js/inicio.js | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+Commit: 01344b8e1b0dc6540e6d3abaaf214fd1a021077c
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 15:02:10 -0300
+
+    adiciona a logica das licitacoes da pagina transparencia: adiciona algumas licitacoes genericas, alem de funcao para criar linhas da tabela e logica de filtro
+
+ js/transparencia.js | 98 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 98 insertions(+)
+
+Commit: 686d9d7b289fcb595924dbc500db44d802b68556
+Autor: Antônio Jonathan Santos Satiro <antoniojonathan2006@gmail.com>
+Data: 2026-10-16 16:32:30 -0300
+
+    cria pagina de noticias com filtro por categoria e leia mais
+
+ css/noticias.css   |  77 +++++++++++++++++++++++++++++
+ html/noticias.html |  22 +++++++++
+ js/noticias.js     | 141 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 240 insertions(+)
+
+Commit: 20f771e693f90bcd1b3b8348889ff3a0fe26c093
+Autor: Antônio Jonathan Santos Satiro <antoniojonathan2006@gmail.com>
+Data: 2026-10-16 17:39:25 -0300
+
+    criada a pagina de legislacao com busca e ementas
+
+ css/legislacao.css   |  72 ++++++++++++++++++++++
+ html/legislacao.html |  28 +++++++++
+ js/legislacao.js     | 165 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 265 insertions(+)
+
+Commit: 41e17634a4ee60526f7f60ef2a56cda1f7de8e75
+Autor: caua-aquino <cauaaquino386@gmail.com>
+Data: 2026-10-16 18:43:55 -0300
+
+    criacao da pagina de vereadores com busca e favoritos
+
+ css/vereadores.css   |  92 +++++++++++++++++++++++++
+ html/vereadores.html |  21 ++++++
+ js/vereadores.js     | 187 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 300 insertions(+)
+
+Commit: 5ae68ec963f38c1e407d63bafd1c7d9070dd843f
+Autor: caua-aquino <cauaaquino386@gmail.com>
+Data: 2026-10-16 19:49:58 -0300
+
+    criacao pagina institucional com os dados municipais, geografia e a historia da cidade
+
+ css/institucional.css   | 84 +++++++++++++++++++++++++++++++++++++++++++++++++
+ html/institucional.html | 76 ++++++++++++++++++++++++++++++++++++++++++++
+ js/institucional.js     | 16 ++++++++++
+ 3 files changed, 176 insertions(+)
+
+Commit: f3fc67f359ed652e9027de5200369e6f44a67581
+Autor: Antônio Jonathan Santos Satiro <antoniojonathan2006@gmail.com>
+Data: 2026-10-16 20:45:19 -0300
+
+    cria pagina da ouvidoria com validacao e lista de manifestacoes
+
+ css/ouvidoria.css   |  96 ++++++++++++++++++++++++++++++++++
+ html/ouvidoria.html |  45 ++++++++++++++++
+ js/ouvidoria.js     | 146 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 287 insertions(+)
+
+Commit: 0a17549d992042631ec77a96416920e7814be163
+Autor: caua-aquino <cauaaquino386@gmail.com>
+Data: 2026-10-16 21:31:21 -0300
+
+    criacao de pagina da mesa diretora com filtro de cargos e atribuicoes
+
+ css/mesa-diretora.css   |  88 +++++++++++++++++++++++++++++++
+ html/mesa-diretora.html |  45 ++++++++++++++++
+ js/mesa-diretora.js     | 137 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 270 insertions(+)
+
+Commit: 066920bc6758a589c7334589e379e1eeb42e5dcb
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 21:55:42 -0300
+
+    ajeita erros em alguns links
+
+ html/index.html         | 34 +++++++++++++++++-----------------
+ html/institucional.html |  3 ---
+ html/legislacao.html    |  5 +----
+ html/mesa-diretora.html |  3 ---
+ html/transparencia.html |  3 ---
+ 5 files changed, 18 insertions(+), 30 deletions(-)
