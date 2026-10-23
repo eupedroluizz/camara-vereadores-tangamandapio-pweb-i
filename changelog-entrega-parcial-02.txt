@@ -267,3 +267,125 @@ Data: 2026-10-16 21:55:42 -0300
  html/mesa-diretora.html |  3 ---
  html/transparencia.html |  3 ---
  5 files changed, 18 insertions(+), 30 deletions(-)
+
+Commit: edc5458c96786ddf363e1674262e9569d9db4341
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 22:05:35 -0300
+
+    cria o changelog
+
+ changelog-entrega-parcial-01.txt | 269 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 269 insertions(+)
+
+Commit: c841da9a508f53dee32e77d58b6679502c795e83
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-16 22:10:03 -0300
+
+    ajeita link para pagina de vereadores na pagina principal
+
+ html/index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Commit: b8dd708ace8ec292098bf73bd24c9bbccc1e717a
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 12:35:42 -0300
+
+    adiciona informacao com as visitas e banner dos cookies
+
+ css/global.css          | 105 +++++++++++++++++++++++++++++++++++++++---------
+ css/index.css           |  12 +-----
+ html/index.html         |   6 +++
+ html/institucional.html |   9 +++++
+ html/legislacao.html    |  11 ++++-
+ html/mesa-diretora.html |   9 +++++
+ html/noticias.html      |   6 +++
+ html/ouvidoria.html     |   6 +++
+ html/transparencia.html |  11 ++++-
+ html/vereadores.html    |   6 +++
+ 10 files changed, 150 insertions(+), 31 deletions(-)
+
+Commit: 141a48f0b47afe4d63c3cd8f668fa236f3e1281e
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 12:42:44 -0300
+
+    ajeita realce busca
+
+ css/global.css | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+Commit: 024545a5fd9e0bcaae217ff3d7bb629884d0ad61
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 12:54:26 -0300
+
+    implementa funcoes globais setCookie e getCookie para trabalhar com cookies
+
+ js/script.js | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+Commit: 14e0341b2e0fa1ce6bb069980910de9d2a854e8d
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 13:02:05 -0300
+
+    adiciona logica para guardar o tamanho da fonte desejada pelo usuario
+
+ js/script.js | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+Commit: 1301b5b2d5672ad4e38a7fe3baa75b2e3ee97025
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 13:07:41 -0300
+
+    adiciona elementos de ultima noticia e ultima lei consultadas
+
+ html/legislacao.html | 1 +
+ html/noticias.html   | 1 +
+ 2 files changed, 2 insertions(+)
+
+Commit: 07c450379319316ad3e027b47913e26328ac4f5f
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 13:43:56 -0300
+
+    implementa a logica para o termo de aceitacao de gravar dados com cookies
+
+ js/script.js | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+Commit: 7805b4c84caf58be63a04d584b84f1d517df7fe3
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 14:20:27 -0300
+
+    adiciona contagem de visitas no rodape com cookies e sessionstorage
+
+ js/script.js | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
+
+Commit: b4ab0dfd751f508f8eb34b25a93b32f2df6dd4ef
+Autor: Pedro Luiz <eupedroluizz@gmail.com>
+Data: 2026-10-23 14:31:01 -0300
+
+    adidiona persistencia em relacao a fechar a caixa de aviso da proxima sessao
+
+ html/index.html |  2 +-
+ js/inicio.js    | 11 ++++++++---
+ 2 files changed, 9 insertions(+), 4 deletions(-)
+
+Commit: 06ac9d802a5edab23b275583fbd605e20d1aea55
+Autor: Antônio Jonathan Santos Satiro <antoniojonathan2006@gmail.com>
+Data: 2026-10-23 15:22:10 -0300
+
+    Poem armazenamento em noticias, legislacao e ouvidoria com rascunho e cookies
+
+ css/noticias.css |  7 +++++++
+ js/legislacao.js | 20 ++++++++++++++++++++
+ js/noticias.js   | 35 +++++++++++++++++++++++++++++++++++
+ js/ouvidoria.js  | 23 +++++++++++++++++++++++
+ 4 files changed, 85 insertions(+)
+
+Commit: 6a2a52b5af20cd92163524d834ce0f877a8b6aae
+Autor: caua-aquino <cauaaquino386@gmail.com>
+Data: 2026-10-23 16:01:17 -0300
+
+    salva os vereadores favoritos e mantem o filtro de pesquisa
+
+ js/vereadores.js | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
