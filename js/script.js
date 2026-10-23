@@ -141,3 +141,22 @@ botaoAceitarCookies.addEventListener("click", () => {
     setCookie("aceitouCookies", "sim", 365);
     avisoCookies.classList.remove("visivel");
 });
+
+const infoVisita = document.querySelector("#info-visita");
+const ultimaVisita = getCookie("ultimaVisita");
+let quantidadeVisitas = Number(getCookie("quantidadeVisitas") ?? 0);
+
+if (sessionStorage.getItem("visitaContada") === null) {
+    quantidadeVisitas++;
+    setCookie("quantidadeVisitas", quantidadeVisitas, 365);
+    sessionStorage.setItem("visitaContada", "sim");
+
+    const hoje = new Date();
+    setCookie("ultimaVisita", hoje.getDate() + "/" + (hoje.getMonth() + 1) + "/" + hoje.getFullYear(), 365);
+}
+
+if (ultimaVisita === null) {
+    infoVisita.textContent = "Seja bem-vindo(a) ao site da Câmara!";
+} else {
+    infoVisita.textContent = `Você já visitou o site ${quantidadeVisitas} vez(es). Última visita: ${ultimaVisita}.`;
+}
