@@ -43,6 +43,10 @@ const vereadores = [
 
 let favoritos = [];
 
+if (localStorage.getItem("favoritosVereadores")) {
+    favoritos = localStorage.getItem("favoritosVereadores").split(",");
+}
+
 const gradeVereadores = document.querySelector("#grade-vereadores");
 const campoFiltro = document.querySelector("#filtro-vereador");
 const caixaFavoritos = document.querySelector("#somente-favoritos");
@@ -146,6 +150,9 @@ function filtrarVereadores() {
     }
 
     mostrarVereadores(resultado);
+
+    sessionStorage.setItem("filtroVereador", campoFiltro.value);
+    sessionStorage.setItem("somenteFavoritos", caixaFavoritos.checked);
 }
 
 campoFiltro.addEventListener("input", filtrarVereadores);
@@ -180,8 +187,13 @@ gradeVereadores.addEventListener("click", (event) => {
             favoritos.splice(posicao, 1);
         }
 
+        localStorage.setItem("favoritosVereadores", favoritos.join(","));
+
         filtrarVereadores();
     }
 });
 
-mostrarVereadores(vereadores);
+campoFiltro.value = sessionStorage.getItem("filtroVereador") ?? "";
+caixaFavoritos.checked = sessionStorage.getItem("somenteFavoritos") === "true";
+
+filtrarVereadores();
