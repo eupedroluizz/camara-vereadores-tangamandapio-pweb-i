@@ -129,3 +129,15 @@ campoBusca.addEventListener("keydown", (event) => {
         limparBusca();
     }
 });
+
+const avisoCookies = document.querySelector("#aviso-cookies");
+const botaoAceitarCookies = document.querySelector("#aceitar-cookies");
+
+if (getCookie("aceitouCookies") === null) {
+    avisoCookies.classList.add("visivel");
+}
+
+botaoAceitarCookies.addEventListener("click", () => {
+    setCookie("aceitouCookies", "sim", 365);
+    avisoCookies.classList.remove("visivel");
+});
