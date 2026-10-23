@@ -1,3 +1,24 @@
+function setCookie(nome, valor, dias) {
+    const d = new Date();
+    d.setTime(d.getTime() + (dias * 24 * 60 * 60 * 1000));
+    document.cookie = `${nome}=${valor};expires=${d.toUTCString()};path=/`;
+}
+
+function getCookie(nome) {
+    const nomeEQ = nome + "=";
+    const cookies = document.cookie.split(";");
+
+    for (let c of cookies) {
+        while (c.charAt(0) == " ") {
+            c = c.substring(1);
+        }
+        if (c.indexOf(nomeEQ) == 0) {
+            return c.substring(nomeEQ.length, c.length);
+        }
+    }
+    return null;
+}
+
 const botaoAumentar = document.querySelector("#aumentar-fonte");
 const botaoDiminuir = document.querySelector("#diminuir-fonte");
 
