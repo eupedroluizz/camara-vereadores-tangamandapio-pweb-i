@@ -11,6 +11,14 @@ const semManifestacoes = document.querySelector("#sem-manifestacoes");
 
 let manifestacoes = [];
 
+if (localStorage.getItem("manifestacoes")) {
+    manifestacoes = JSON.parse(localStorage.getItem("manifestacoes"));
+}
+
+function salvarManifestacoes() {
+    localStorage.setItem("manifestacoes", JSON.stringify(manifestacoes));
+}
+
 const dicas = {
     nome: "Informe seu nome completo.",
     email: "Usaremos o e-mail para responder sua manifestação.",
@@ -32,6 +40,7 @@ for (const campo of campos) {
 
 campoMensagem.addEventListener("input", () => {
     contadorCaracteres.textContent = `${campoMensagem.value.length}/500 caracteres`;
+    sessionStorage.setItem("rascunhoMensagem", campoMensagem.value);
 });
 
 function mostrarManifestacoes() {
@@ -113,7 +122,13 @@ formulario.addEventListener("submit", (event) => {
     };
 
     manifestacoes.push(manifestacao);
+    salvarManifestacoes();
     mostrarManifestacoes();
+
+    localStorage.setItem("nomeUsuario", manifestacao.nome);
+    localStorage.setItem("emailUsuario", manifestacao.email);
+    setCookie("ultimoAssunto", manifestacao.assunto, 30);
+    sessionStorage.removeItem("rascunhoMensagem");
 
     mensagemFormulario.textContent = `Obrigado, ${manifestacao.nome}! Sua manifestação foi enviada.`;
     mensagemFormulario.classList.add("sucesso");
@@ -127,6 +142,7 @@ formulario.addEventListener("reset", () => {
     limparErros();
     mensagemFormulario.textContent = "";
     contadorCaracteres.textContent = "0/500 caracteres";
+    sessionStorage.removeItem("rascunhoMensagem");
 });
 
 listaManifestacoes.addEventListener("click", (event) => {
@@ -140,7 +156,14 @@ listaManifestacoes.addEventListener("click", (event) => {
     const indice = Number(item.id.replace("manifestacao-", ""));
 
     manifestacoes.splice(indice, 1);
+    salvarManifestacoes();
     mostrarManifestacoes();
 });
+
+campoNome.value = localStorage.getItem("nomeUsuario") ?? "";
+campoEmail.value = localStorage.getItem("emailUsuario") ?? "";
+campoMensagem.value = sessionStorage.getItem("rascunhoMensagem") ?? "";
+campoAssunto.value = getCookie("ultimoAssunto") ?? "";
+contadorCaracteres.textContent = `${campoMensagem.value.length}/500 caracteres`;
 
 mostrarManifestacoes();

@@ -59,6 +59,17 @@ const gradeLeis = document.querySelector("#grade-leis");
 const filtroTipoLei = document.querySelector("#filtro-tipo-lei");
 const buscaLei = document.querySelector("#busca-lei");
 const contadorLeis = document.querySelector("#contador-leis");
+const ultimaLeiElemento = document.querySelector("#ultima-lei");
+
+function mostrarUltimaLei() {
+    if (!ultimaLeiElemento) {
+        return;
+    }
+    const numero = getCookie("ultimaLei");
+    if (numero) {
+        ultimaLeiElemento.textContent = "Última norma consultada: " + numero;
+    }
+}
 
 function criarCartaoLei(lei) {
     const cartao = document.createElement("article");
@@ -156,10 +167,19 @@ gradeLeis.addEventListener("click", (event) => {
     if (detalhes.classList.contains("aberto")) {
         botao.textContent = "Ocultar Texto Completo";
         botao.setAttribute("aria-expanded", "true");
+
+        for (const lei of leis) {
+            if (lei.id === cartao.id) {
+                setCookie("ultimaLei", lei.numero, 30);
+                mostrarUltimaLei();
+                break;
+            }
+        }
     } else {
         botao.textContent = "Ver Texto Completo";
         botao.setAttribute("aria-expanded", "false");
     }
 });
 
+mostrarUltimaLei();
 filtrarLeis();

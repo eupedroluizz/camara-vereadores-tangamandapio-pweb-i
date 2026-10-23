@@ -75,3 +75,10 @@
 .texto-completo.aberto {
     display: block;
 }
+
+.lida h3::after {
+    content: " (lida)";
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #888;
+}

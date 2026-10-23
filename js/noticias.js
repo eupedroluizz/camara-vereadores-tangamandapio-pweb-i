@@ -44,11 +44,22 @@ const noticias = [
 const gradeNoticias = document.querySelector("#grade-noticias");
 const filtroCategoria = document.querySelector("#filtro-categoria");
 const contadorNoticias = document.querySelector("#contador-noticias");
+const ultimaNoticia = document.querySelector("#ultima-noticia");
+
+let noticiasLidas = [];
+
+if (localStorage.getItem("noticiasLidas")) {
+    noticiasLidas = localStorage.getItem("noticiasLidas").split(",");
+}
 
 function criarCartaoNoticia(noticia) {
     const cartao = document.createElement("article");
     cartao.classList.add("cartao-noticia");
     cartao.id = noticia.id;
+
+    if (noticiasLidas.indexOf(noticia.id) !== -1) {
+        cartao.classList.add("lida");
+    }
 
     const imagem = document.createElement("img");
     imagem.classList.add("imagem-noticia");
@@ -113,6 +124,18 @@ function mostrarNoticias() {
     }
 
     contadorNoticias.textContent = `${quantidade} notícia(s) encontrada(s).`;
+
+    sessionStorage.setItem("filtroCategoria", categoriaEscolhida);
+}
+
+function mostrarUltimaNoticia() {
+    const id = getCookie("ultimaNoticia");
+
+    for (const noticia of noticias) {
+        if (noticia.id === id) {
+            ultimaNoticia.textContent = "Última notícia lida: " + noticia.titulo;
+        }
+    }
 }
 
 filtroCategoria.addEventListener("change", mostrarNoticias);
@@ -132,10 +155,22 @@ gradeNoticias.addEventListener("click", (event) => {
     if (textoCompleto.classList.contains("aberto")) {
         botao.textContent = "Mostrar menos";
         botao.setAttribute("aria-expanded", "true");
+
+        if (noticiasLidas.indexOf(cartao.id) === -1) {
+            noticiasLidas.push(cartao.id);
+            localStorage.setItem("noticiasLidas", noticiasLidas.join(","));
+            cartao.classList.add("lida");
+        }
+
+        setCookie("ultimaNoticia", cartao.id, 30);
+        mostrarUltimaNoticia();
     } else {
         botao.textContent = "Leia mais";
         botao.setAttribute("aria-expanded", "false");
     }
 });
 
+filtroCategoria.value = sessionStorage.getItem("filtroCategoria") ?? "todas";
+
+mostrarUltimaNoticia();
 mostrarNoticias();
