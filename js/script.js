@@ -22,11 +22,14 @@ function getCookie(nome) {
 const botaoAumentar = document.querySelector("#aumentar-fonte");
 const botaoDiminuir = document.querySelector("#diminuir-fonte");
 
-let tamanhoFonte = 16;
+let tamanhoFonte = Number(localStorage.getItem("tamanhoFonte") ?? 16);
 
 function aplicarTamanhoFonte() {
     document.querySelector("html").style.fontSize = tamanhoFonte + "px";
+    localStorage.setItem("tamanhoFonte", tamanhoFonte);
 }
+
+aplicarTamanhoFonte();
 
 botaoAumentar.addEventListener("click", () => {
     if (tamanhoFonte < 22) {
