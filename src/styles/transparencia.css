@@ -1,0 +1,88 @@
+.grade-numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.cartao-numero {
+    background-color: #ffffff;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+}
+
+.valor-numero {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.descricao-numero {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 400px;
+    margin: 0 auto 1rem;
+}
+
+.filtro select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.tabela-responsiva {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    margin-top: 1.5rem;
+}
+
+.tabela-dados {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.tabela-dados th, 
+.tabela-dados td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-dados th {
+    background-color: #f1f8e9;
+    color: #1b5e20;
+    font-weight: bold;
+}
+
+.status-concluida {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.status-andamento {
+    color: #e65100;
+    font-weight: bold;
+}
+
+.status-homologada {
+    color: #1565c0;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    .valor-numero {
+        font-size: 2rem;
+    }
+}

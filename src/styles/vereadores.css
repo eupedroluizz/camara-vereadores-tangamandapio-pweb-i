@@ -1,0 +1,92 @@
+.filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 400px;
+    margin: 0 auto 1rem;
+}
+
+.filtro input[type="text"], 
+.filtro select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.opcao-favoritos {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contador {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.grade-vereadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.cartao-vereador {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}  
+
+.cartao-vereador img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.info-vereador {
+    padding: 1.5rem;
+}
+
+.info-vereador h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.partido-vereador {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.botao-favorito {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #999;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+}
+
+.botao-favorito.favorito {
+    color: #f9a825;
+}
+
+.detalhes-vereador {
+    display: none;
+    text-align: left;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.detalhes-vereador.aberto {
+    display: block;
+}
+
+.detalhes-vereador p {
+    margin-bottom: 0.5rem;
+}
