@@ -45,6 +45,17 @@ const dadosVereadores = [
 ];
 
 export default function Vereadores() {
+  const [busca, setBusca] = useState("");
+  const [expandidos, setExpandidos] = useState({});
+
+  const toggleExpandir = (id) => {
+    setExpandidos((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const vereadoresFiltrados = dadosVereadores.filter((v) =>
+    v.nome.toLowerCase().includes(busca.toLowerCase())
+  );
+
   return (
     <main>
       <nav className="caminho-navegacao conteiner" aria-label="Navegação estrutural">
@@ -55,21 +66,52 @@ export default function Vereadores() {
         <h2 id="titulo-vereadores" className="titulo-secao">Vereadores</h2>
         <p className="subtitulo-secao">Conheça os representantes do poder legislativo de Tangamandápio</p>
 
+        <div className="filtro">
+          <label htmlFor="filtro-vereador">Pesquisar vereador pelo nome</label>
+          <input
+            id="filtro-vereador"
+            type="text"
+            placeholder="Ex.: Madruga"
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+          />
+        </div>
+
         <p id="contador-vereadores" className="contador" aria-live="polite">
-          Mostrando {dadosVereadores.length} de {dadosVereadores.length} vereadores
+          Mostrando {vereadoresFiltrados.length} de {dadosVereadores.length} vereadores
         </p>
 
         <div id="grade-vereadores" className="grade-vereadores">
-          {dadosVereadores.map((v) => (
-            <article key={v.id} className="cartao-vereador" id={v.id}>
-              <img className="img-responsiva" src={v.foto} alt={`Foto do Vereador ${v.nome}`} />
-              <div className="info-vereador">
-                <h3>{v.nome}</h3>
-                <p className="cargo-vereador"><strong>Cargo:</strong> {v.cargo}</p>
-                <p className="partido-vereador"><strong>Partido:</strong> {v.partido}</p>
-              </div>
-            </article>
-          ))}
+          {vereadoresFiltrados.map((v) => {
+            const isExp = !!expandidos[v.id];
+            return (
+              <article key={v.id} className="cartao-vereador" id={v.id}>
+                <img className="img-responsiva" src={v.foto} alt={`Foto do Vereador ${v.nome}`} />
+                <div className="info-vereador">
+                  <h3>{v.nome}</h3>
+                  <p className="cargo-vereador"><strong>Cargo:</strong> {v.cargo}</p>
+                  <p className="partido-vereador"><strong>Partido:</strong> {v.partido}</p>
+
+                  <button
+                    type="button"
+                    className="botao-primario botao-detalhes"
+                    onClick={() => toggleExpandir(v.id)}
+                    aria-expanded={isExp}
+                  >
+                    {isExp ? "Ocultar Perfil" : "Ver Perfil"}
+                  </button>
+
+                  {isExp && (
+                    <div className="detalhes-vereador" style={{ marginTop: "0.8rem", textAlign: "left" }}>
+                      <p><strong>E-mail:</strong> {v.email}</p>
+                      <p><strong>Telefone:</strong> {v.telefone}</p>
+                      <p style={{ marginTop: "0.5rem" }}>{v.biografia}</p>
+                    </div>
+                  )}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
     </main>
