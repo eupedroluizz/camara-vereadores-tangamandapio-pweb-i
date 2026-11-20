@@ -36,6 +36,11 @@ const dadosNoticias = [
 
 export default function Noticias() {
   const [categoria, setCategoria] = useState("todas");
+  const [expandidas, setExpandidas] = useState({});
+
+  const toggleExpandir = (id) => {
+    setExpandidas((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const noticiasFiltradas = dadosNoticias.filter((noticia) => {
     if (categoria === "todas") return true;
@@ -71,21 +76,42 @@ export default function Noticias() {
         </p>
 
         <div className="grade-noticias" style={{ marginTop: "1.5rem" }}>
-          {noticiasFiltradas.map((noticia) => (
-            <article key={noticia.id} className="cartao-noticia">
-              <img
-                className="imagem-noticia img-responsiva"
-                src={noticia.imagem}
-                alt={noticia.descricaoImagem}
-              />
-              <div className="conteudo-noticia">
-                <span className="data-noticia">{noticia.data}</span> |{" "}
-                <span className="categoria-noticia">{noticia.categoria}</span>
-                <h3>{noticia.titulo}</h3>
-                <p>{noticia.resumo}</p>
-              </div>
-            </article>
-          ))}
+          {noticiasFiltradas.map((noticia) => {
+            const isExp = !!expandidas[noticia.id];
+            return (
+              <article key={noticia.id} className="cartao-noticia">
+                <img
+                  className="imagem-noticia img-responsiva"
+                  src={noticia.imagem}
+                  alt={noticia.descricaoImagem}
+                />
+                <div className="conteudo-noticia">
+                  <span className="data-noticia">{noticia.data}</span> |{" "}
+                  <span className="categoria-noticia">{noticia.categoria}</span>
+                  <h3>{noticia.titulo}</h3>
+                  <p>{noticia.resumo}</p>
+
+                  <button
+                    type="button"
+                    className="botao-secundario"
+                    onClick={() => toggleExpandir(noticia.id)}
+                    style={{ marginTop: "0.8rem" }}
+                  >
+                    {isExp ? "Mostrar Menos" : "Leia Mais"}
+                  </button>
+
+                  {isExp && (
+                    <div
+                      className="texto-completo-noticia"
+                      style={{ marginTop: "0.8rem", borderTop: "1px dashed #ccc", paddingTop: "0.8rem" }}
+                    >
+                      <p>{noticia.texto}</p>
+                    </div>
+                  )}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
     </main>
