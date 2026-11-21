@@ -1,0 +1,30 @@
+[
+  {
+    "processo": "Proc. 01/2026",
+    "objeto": "Aquisição de 10 bicicletas com marcha para serviços postais",
+    "valor": "R$ 18.000,00",
+    "data": "10/02/2026",
+    "status": "Concluída"
+  },
+  {
+    "processo": "Proc. 02/2026",
+    "objeto": "Reforma geral e pintura da Escola Municipal de Tangamandápio",
+    "valor": "R$ 85.000,00",
+    "data": "05/03/2026",
+    "status": "Homologada"
+  },
+  {
+    "processo": "Proc. 03/2026",
+    "objeto": "Fornecimento de papelaria e suprimentos de informática",
+    "valor": "R$ 4.200,00",
+    "data": "18/04/2026",
+    "status": "Em andamento"
+  },
+  {
+    "processo": "Proc. 04/2026",
+    "objeto": "Serviço de manutenção preventiva dos veículos oficiais",
+    "valor": "R$ 12.500,00",
+    "data": "22/05/2026",
+    "status": "Concluída"
+  }
+]

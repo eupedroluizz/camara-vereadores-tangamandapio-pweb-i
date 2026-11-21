@@ -1,41 +1,33 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const dadosIniciaisLicitacoes = [
-  {
-    processo: "Proc. 01/2026",
-    objeto: "Aquisição de 10 bicicletas com marcha para serviços postais",
-    valor: "R$ 18.000,00",
-    data: "10/02/2026",
-    status: "Concluída"
-  },
-  {
-    processo: "Proc. 02/2026",
-    objeto: "Reforma geral e pintura da Escola Municipal de Tangamandápio",
-    valor: "R$ 85.000,00",
-    data: "05/03/2026",
-    status: "Homologada"
-  },
-  {
-    processo: "Proc. 03/2026",
-    objeto: "Fornecimento de papelaria e suprimentos de informática",
-    valor: "R$ 4.200,00",
-    data: "18/04/2026",
-    status: "Em andamento"
-  },
-  {
-    processo: "Proc. 04/2026",
-    objeto: "Serviço de manutenção preventiva dos veículos oficiais",
-    valor: "R$ 12.500,00",
-    data: "22/05/2026",
-    status: "Concluída"
-  }
-];
-
 export default function Transparencia() {
+  const [licitacoes, setLicitacoes] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
   const [filtroStatus, setFiltroStatus] = useState("todos");
 
-  const licitacoesFiltradas = dadosIniciaisLicitacoes.filter((item) => {
+  useEffect(() => {
+    async function carregarLicitacoes() {
+      try {
+        setCarregando(true);
+        const resposta = await fetch("/data/licitacoes.json");
+        if (!resposta.ok) {
+          throw new Error(`Falha na requisição: status ${resposta.status}`);
+        }
+        const dados = await resposta.json();
+        setLicitacoes(dados);
+      } catch (err) {
+        console.error("Erro ao buscar licitações:", err);
+        setErro("Não foi possível carregar os dados das licitações no momento.");
+      } finally {
+        setCarregando(false);
+      }
+    }
+    carregarLicitacoes();
+  }, []);
+
+  const licitacoesFiltradas = licitacoes.filter((item) => {
     if (filtroStatus === "todos") return true;
     return item.status === filtroStatus;
   });
@@ -91,38 +83,54 @@ export default function Transparencia() {
           </select>
         </div>
 
-        <p id="contador-licitacoes" className="contador" aria-live="polite">
-          Mostrando {licitacoesFiltradas.length} de {dadosIniciaisLicitacoes.length} licitações
-        </p>
+        {carregando && (
+          <p className="contador" style={{ color: "#15803d", fontWeight: "bold" }}>
+            Carregando licitações da Câmara Municipal via Fetch API...
+          </p>
+        )}
 
-        <div className="tabela-responsiva">
-          <table className="tabela-dados">
-            <thead>
-              <tr>
-                <th>Processo</th>
-                <th>Objeto</th>
-                <th>Valor</th>
-                <th>Data</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="corpo-tabela-licitacoes">
-              {licitacoesFiltradas.map((lic, idx) => (
-                <tr key={idx}>
-                  <td><strong>{lic.processo}</strong></td>
-                  <td>{lic.objeto}</td>
-                  <td>{lic.valor}</td>
-                  <td>{lic.data}</td>
-                  <td>
-                    <span className={`status-tag status-${lic.status.toLowerCase().replace(" ", "-")}`}>
-                      {lic.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {erro && (
+          <p className="contador" style={{ color: "#b91c1c" }}>
+            {erro}
+          </p>
+        )}
+
+        {!carregando && !erro && (
+          <>
+            <p id="contador-licitacoes" className="contador" aria-live="polite">
+              Mostrando {licitacoesFiltradas.length} de {licitacoes.length} licitações
+            </p>
+
+            <div className="tabela-responsiva">
+              <table className="tabela-dados">
+                <thead>
+                  <tr>
+                    <th>Processo</th>
+                    <th>Objeto</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="corpo-tabela-licitacoes">
+                  {licitacoesFiltradas.map((lic, idx) => (
+                    <tr key={idx}>
+                      <td><strong>{lic.processo}</strong></td>
+                      <td>{lic.objeto}</td>
+                      <td>{lic.valor}</td>
+                      <td>{lic.data}</td>
+                      <td>
+                        <span className={`status-tag status-${lic.status.toLowerCase().replace(" ", "-")}`}>
+                          {lic.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </section>
     </main>
   );
