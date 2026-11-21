@@ -1,6 +1,34 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getCookie, setCookie } from "../utils/cookies";
+import { storage } from "../utils/storage";
 
 export default function Footer() {
+  const [visitas, setVisitas] = useState(1);
+  const [ultimaVisita, setUltimaVisita] = useState("");
+
+  useEffect(() => {
+    let cont = parseInt(getCookie("quantidadeVisitas") || "0", 10);
+    const jaContou = storage.getSession("visitaContada");
+
+    if (!jaContou) {
+      cont += 1;
+      setCookie("quantidadeVisitas", cont.toString(), 365);
+      storage.setSession("visitaContada", "true");
+    }
+
+    setVisitas(cont);
+
+    const uv = getCookie("ultimaVisita");
+    if (uv) {
+      setUltimaVisita(uv);
+    } else {
+      const hoje = new Date().toLocaleDateString("pt-BR");
+      setCookie("ultimaVisita", hoje, 365);
+      setUltimaVisita(hoje);
+    }
+  }, []);
+
   return (
     <footer className="rodape-principal">
       <div className="conteiner grade-rodape">
@@ -44,7 +72,9 @@ export default function Footer() {
       </div>
       <div className="rodape-inferior">
         <p>&copy; 2026 Câmara Municipal de Tangamandápio. Todos os direitos reservados para evitar a fadiga.</p>
-        <p id="info-visita">Portal atualizado no formato SPA (Vite + React).</p>
+        <p id="info-visita">
+          Visitas registradas: <strong>{visitas}</strong> {ultimaVisita && `| Última visita: ${ultimaVisita}`}
+        </p>
       </div>
     </footer>
   );

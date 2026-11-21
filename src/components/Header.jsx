@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 
 export default function Header() {
@@ -6,10 +6,20 @@ export default function Header() {
   const [mensagemBusca, setMensagemBusca] = useState("");
   const [tamanhoFonte, setTamanhoFonte] = useState(16);
 
+  useEffect(() => {
+    const salva = localStorage.getItem("tamanhoFonte");
+    if (salva) {
+      const valor = parseInt(salva, 10);
+      setTamanhoFonte(valor);
+      document.documentElement.style.fontSize = `${valor}px`;
+    }
+  }, []);
+
   const alterarFonte = (delta) => {
     setTamanhoFonte((prev) => {
       const novo = Math.min(22, Math.max(12, prev + delta));
       document.documentElement.style.fontSize = `${novo}px`;
+      localStorage.setItem("tamanhoFonte", novo.toString());
       return novo;
     });
   };

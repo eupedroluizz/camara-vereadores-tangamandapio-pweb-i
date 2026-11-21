@@ -1,7 +1,20 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { storage } from "../utils/storage";
 
 export default function AvisoPlenaria() {
   const [visivel, setVisivel] = useState(true);
+
+  useEffect(() => {
+    const fechado = storage.getSession("avisoFechado");
+    if (fechado === "true") {
+      setVisivel(false);
+    }
+  }, []);
+
+  const fechar = () => {
+    storage.setSession("avisoFechado", "true");
+    setVisivel(false);
+  };
 
   if (!visivel) return null;
 
@@ -15,7 +28,7 @@ export default function AvisoPlenaria() {
         className="fechar-aviso"
         type="button"
         aria-label="Fechar aviso"
-        onClick={() => setVisivel(false)}
+        onClick={fechar}
       >
         X
       </button>

@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CookieBanner from "./components/CookieBanner";
 import VoltarTopo from "./components/VoltarTopo";
 import Inicio from "./pages/Inicio";
 import Institucional from "./pages/Institucional";
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/ouvidoria" element={<Ouvidoria />} />
       </Routes>
       <Footer />
+      <CookieBanner />
       <VoltarTopo />
     </div>
   );
