@@ -6,12 +6,16 @@ export default function Vereadores() {
   const [vereadores, setVereadores] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
-  const [busca, setBusca] = useState("");
-  const [expandidos, setExpandidos] = useState({});
+
+  const [busca, setBusca] = useState(() => storage.getSession("filtroVereador", ""));
+  const [somenteFavoritos, setSomenteFavoritos] = useState(
+    () => storage.getSession("somenteFavoritos", "false") === "true"
+  );
   const [favoritos, setFavoritos] = useState(() => {
     const salvos = storage.getLocal("favoritosVereadores", "");
     return salvos ? salvos.split(",").filter(Boolean) : [];
   });
+  const [expandidos, setExpandidos] = useState({});
 
   useEffect(() => {
     async function buscarVereadores() {
@@ -33,6 +37,16 @@ export default function Vereadores() {
     buscarVereadores();
   }, []);
 
+  const handleBuscaChange = (val) => {
+    setBusca(val);
+    storage.setSession("filtroVereador", val);
+  };
+
+  const handleFavoritosChange = (val) => {
+    setSomenteFavoritos(val);
+    storage.setSession("somenteFavoritos", val.toString());
+  };
+
   const toggleFavorito = (id) => {
     setFavoritos((prev) => {
       const novo = prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id];
@@ -45,9 +59,11 @@ export default function Vereadores() {
     setExpandidos((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const vereadoresFiltrados = vereadores.filter((v) =>
-    v.nome.toLowerCase().includes(busca.toLowerCase())
-  );
+  const vereadoresFiltrados = vereadores.filter((v) => {
+    const combinaNome = v.nome.toLowerCase().includes(busca.toLowerCase());
+    const combinaFavorito = somenteFavoritos ? favoritos.includes(v.id) : true;
+    return combinaNome && combinaFavorito;
+  });
 
   return (
     <main>
@@ -66,8 +82,17 @@ export default function Vereadores() {
             type="text"
             placeholder="Ex.: Madruga"
             value={busca}
-            onChange={(e) => setBusca(e.target.value)}
+            onChange={(e) => handleBuscaChange(e.target.value)}
           />
+          <div className="opcao-favoritos" style={{ marginTop: "0.5rem" }}>
+            <input
+              id="somente-favoritos"
+              type="checkbox"
+              checked={somenteFavoritos}
+              onChange={(e) => handleFavoritosChange(e.target.checked)}
+            />
+            <label htmlFor="somente-favoritos" style={{ marginLeft: "0.5rem" }}>Mostrar apenas favoritos</label>
+          </div>
         </div>
 
         {carregando && (
@@ -90,8 +115,8 @@ export default function Vereadores() {
 
             <div id="grade-vereadores" className="grade-vereadores">
               {vereadoresFiltrados.map((v) => {
-                const isExp = !!expandidos[v.id];
                 const isFav = favoritos.includes(v.id);
+                const isExp = !!expandidos[v.id];
 
                 return (
                   <article key={v.id} className="cartao-vereador" id={v.id}>
