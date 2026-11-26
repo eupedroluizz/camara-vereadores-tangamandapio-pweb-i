@@ -1,0 +1,29 @@
+[
+  {
+    "id": "lei-101",
+    "tipo": "Lei Ordinária",
+    "numero": "Lei nº 101/2026",
+    "data": "23/09/2026",
+    "titulo": "Institui o \"Dia Municipal de Evitar a Fadiga\"",
+    "ementa": "Fica instituído no calendário oficial do município o Dia de Evitar a Fadiga, promovendo o descanso e a qualidade de vida aos trabalhadores locais.",
+    "textoCompleto": "Art. 1º Fica instituído o dia 23 de setembro como o Dia Municipal de Evitar a Fadiga. Art. 2º O Poder Executivo apoiará atividades de recreação e repouso na praça central. Art. 3º Esta Lei entra em vigor na data de sua publicação."
+  },
+  {
+    "id": "dec-54",
+    "tipo": "Decreto Legislativo",
+    "numero": "Decreto nº 54/2026",
+    "data": "10/08/2026",
+    "titulo": "Regulamenta o tráfego de bicicletas postais nas ladeiras da serra",
+    "ementa": "Estabelece diretrizes de trânsito preferencial aos carteiros e entregadores de bicicletas nas vias públicas de Tangamandápio.",
+    "textoCompleto": "Art. 1º As vias municipais deverão contar com sinalização exclusiva de ciclorrotas para trabalhadores postais. Art. 2º O descumprimento sujeitará o infrator a advertência pública."
+  },
+  {
+    "id": "res-12",
+    "tipo": "Resolução",
+    "numero": "Resolução nº 12/2026",
+    "data": "05/06/2026",
+    "titulo": "Reforma do Regimento Interno da Câmara Municipal",
+    "ementa": "Altera o horário de início das sessões plenárias para as 10h da manhã, garantindo intervalo adequado para o café da manhã com café quente.",
+    "textoCompleto": "Art. 1º O plenário reunir-se-á ordinariamente às quintas-feiras, a partir das 10 horas. Art. 2º Fica assegurada pausa regimental de 20 minutos para café e prosa."
+  }
+]
