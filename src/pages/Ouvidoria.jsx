@@ -7,12 +7,17 @@ export default function Ouvidoria() {
   const [nome, setNome] = useState(() => storage.getLocal("nomeUsuario", ""));
   const [email, setEmail] = useState(() => storage.getLocal("emailUsuario", ""));
   const [assunto, setAssunto] = useState(() => getCookie("ultimoAssunto") || "Sugestão");
-  const [mensagem, setMensagem] = useState("");
+  const [mensagem, setMensagem] = useState(() => storage.getSession("rascunhoMensagem", ""));
   const [dica, setDica] = useState("");
   const [statusEnvio, setStatusEnvio] = useState("");
   const [manifestacoes, setManifestacoes] = useState(() => {
     return storage.getLocal("manifestacoes", []);
   });
+
+  const handleMensagemChange = (val) => {
+    setMensagem(val);
+    storage.setSession("rascunhoMensagem", val);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +41,7 @@ export default function Ouvidoria() {
     storage.setLocal("nomeUsuario", nome);
     storage.setLocal("emailUsuario", email);
     setCookie("ultimoAssunto", assunto, 30);
+    storage.setSession("rascunhoMensagem", "");
 
     setStatusEnvio("Manifestação protocolada com sucesso e salva no localStorage!");
     setMensagem("");
@@ -111,13 +117,13 @@ export default function Ouvidoria() {
             rows="5"
             placeholder="Descreva detalhadamente sua manifestação..."
             value={mensagem}
-            onChange={(e) => setMensagem(e.target.value)}
+            onChange={(e) => handleMensagemChange(e.target.value)}
             onFocus={() => setDica("Evite a fadiga: seja claro e objetivo em sua solicitação.")}
             onBlur={() => setDica("")}
             required
           />
           <p id="contador-caracteres" style={{ fontSize: "0.85rem", color: "#666", textAlign: "right" }}>
-            {mensagem.length} caracteres digitados
+            {mensagem.length} caracteres digitados (rascunho mantido na sessão)
           </p>
 
           <button id="enviar-formulario" className="botao-primario" type="submit" style={{ marginTop: "1rem" }}>
