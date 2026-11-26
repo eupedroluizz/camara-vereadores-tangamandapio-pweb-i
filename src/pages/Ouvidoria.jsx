@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { getCookie, setCookie } from "../utils/cookies";
+import { storage } from "../utils/storage";
 
 export default function Ouvidoria() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [assunto, setAssunto] = useState("Sugestão");
+  const [nome, setNome] = useState(() => storage.getLocal("nomeUsuario", ""));
+  const [email, setEmail] = useState(() => storage.getLocal("emailUsuario", ""));
+  const [assunto, setAssunto] = useState(() => getCookie("ultimoAssunto") || "Sugestão");
   const [mensagem, setMensagem] = useState("");
   const [dica, setDica] = useState("");
   const [statusEnvio, setStatusEnvio] = useState("");
-  const [manifestacoes, setManifestacoes] = useState([]);
+  const [manifestacoes, setManifestacoes] = useState(() => {
+    return storage.getLocal("manifestacoes", []);
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,15 +30,21 @@ export default function Ouvidoria() {
       data: new Date().toLocaleDateString("pt-BR")
     };
 
-    setManifestacoes([nova, ...manifestacoes]);
-    setStatusEnvio("Manifestação protocolada com sucesso na Câmara!");
-    setNome("");
-    setEmail("");
+    const atualizadas = [nova, ...manifestacoes];
+    setManifestacoes(atualizadas);
+    storage.setLocal("manifestacoes", atualizadas);
+    storage.setLocal("nomeUsuario", nome);
+    storage.setLocal("emailUsuario", email);
+    setCookie("ultimoAssunto", assunto, 30);
+
+    setStatusEnvio("Manifestação protocolada com sucesso e salva no localStorage!");
     setMensagem("");
   };
 
   const handleRemover = (id) => {
-    setManifestacoes(manifestacoes.filter((m) => m.id !== id));
+    const atualizadas = manifestacoes.filter((m) => m.id !== id);
+    setManifestacoes(atualizadas);
+    storage.setLocal("manifestacoes", atualizadas);
   };
 
   return (
@@ -116,10 +126,10 @@ export default function Ouvidoria() {
         </form>
 
         <section style={{ marginTop: "2.5rem" }}>
-          <h3 className="titulo-secao" style={{ fontSize: "1.3rem" }}>Manifestações Registradas</h3>
+          <h3 className="titulo-secao" style={{ fontSize: "1.3rem" }}>Manifestações Registradas (Persistidas no localStorage)</h3>
           {manifestacoes.length === 0 ? (
             <p id="sem-manifestacoes" style={{ color: "#666", fontStyle: "italic", marginTop: "1rem" }}>
-              Nenhuma manifestação registrada nesta sessão.
+              Nenhuma manifestação registrada até o momento.
             </p>
           ) : (
             <div id="lista-manifestacoes" style={{ marginTop: "1rem" }}>
