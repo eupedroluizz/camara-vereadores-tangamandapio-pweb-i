@@ -1,60 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-const dadosVereadores = [
-  {
-    id: "jaiminho",
-    nome: "Jaiminho, O Carteiro",
-    cargo: "1º Secretário",
-    partido: "Partido da Fadiga Zero (PFZ)",
-    foto: "/assets/img/jaiminho.jpeg",
-    telefone: "(00) 1234-5601",
-    email: "jaiminho@tangamandapio.leg.mx",
-    biografia: "Carteiro de Tangamandápio há mais de 30 anos. Defende melhores condições de trabalho para os servidores dos correios e a construção de ciclovias na cidade."
-  },
-  {
-    id: "seu-barriga",
-    nome: "Seu Barriga",
-    cargo: "Vice-presidente",
-    partido: "Partido dos Proprietários da Vila (PPV)",
-    foto: "/assets/img/seu_barriga.jpg",
-    telefone: "(00) 1234-5602",
-    email: "seubarriga@tangamandapio.leg.mx",
-    biografia: "Empresário e proprietário da vila. Seus projetos tratam da regularização de aluguéis e da conservação dos imóveis do município."
-  },
-  {
-    id: "seu-madruga",
-    nome: "Seu Madruga",
-    cargo: "Vereador",
-    partido: "Partido do Trabalhador Autônomo (PTA)",
-    foto: "/assets/img/seu_madruga.png",
-    telefone: "(00) 1234-5603",
-    email: "seumadruga@tangamandapio.leg.mx",
-    biografia: "Trabalhador autônomo, já foi sapateiro, carpinteiro e vendedor de churros. Luta pela geração de empregos e pelo parcelamento de dívidas dos moradores."
-  },
-  {
-    id: "professor-girafales",
-    nome: "Professor Girafales",
-    cargo: "Presidente",
-    partido: "Partido da Educação (PE)",
-    foto: "/assets/img/professor_girafales.png",
-    telefone: "(00) 1234-5604",
-    email: "girafales@tangamandapio.leg.mx",
-    biografia: "Professor da escola municipal há muitos anos. É autor de projetos voltados para a educação, a leitura e a reforma das escolas da cidade."
-  }
-];
+import { storage } from "../utils/storage";
 
 export default function Vereadores() {
-  const [busca, setBusca] = useState("");
+  const [vereadores, setVereadores] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
+
+  const [busca, setBusca] = useState(() => storage.getSession("filtroVereador", ""));
+  const [somenteFavoritos, setSomenteFavoritos] = useState(
+    () => storage.getSession("somenteFavoritos", "false") === "true"
+  );
+  const [favoritos, setFavoritos] = useState(() => {
+    const salvos = storage.getLocal("favoritosVereadores", "");
+    return salvos ? salvos.split(",").filter(Boolean) : [];
+  });
   const [expandidos, setExpandidos] = useState({});
+
+  useEffect(() => {
+    async function buscarVereadores() {
+      try {
+        setCarregando(true);
+        const res = await fetch("/data/vereadores.json");
+        if (!res.ok) {
+          throw new Error(`Erro HTTP status ${res.status}`);
+        }
+        const data = await res.json();
+        setVereadores(data);
+      } catch (err) {
+        console.error("Erro ao carregar vereadores:", err);
+        setErro("Não foi possível carregar a lista de parlamentares.");
+      } finally {
+        setCarregando(false);
+      }
+    }
+    buscarVereadores();
+  }, []);
+
+  const handleBuscaChange = (val) => {
+    setBusca(val);
+    storage.setSession("filtroVereador", val);
+  };
+
+  const handleFavoritosChange = (val) => {
+    setSomenteFavoritos(val);
+    storage.setSession("somenteFavoritos", val.toString());
+  };
+
+  const toggleFavorito = (id) => {
+    setFavoritos((prev) => {
+      const novo = prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id];
+      storage.setLocal("favoritosVereadores", novo.join(","));
+      return novo;
+    });
+  };
 
   const toggleExpandir = (id) => {
     setExpandidos((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const vereadoresFiltrados = dadosVereadores.filter((v) =>
-    v.nome.toLowerCase().includes(busca.toLowerCase())
-  );
+  const vereadoresFiltrados = vereadores.filter((v) => {
+    const combinaNome = v.nome.toLowerCase().includes(busca.toLowerCase());
+    const combinaFavorito = somenteFavoritos ? favoritos.includes(v.id) : true;
+    return combinaNome && combinaFavorito;
+  });
 
   return (
     <main>
@@ -73,46 +82,84 @@ export default function Vereadores() {
             type="text"
             placeholder="Ex.: Madruga"
             value={busca}
-            onChange={(e) => setBusca(e.target.value)}
+            onChange={(e) => handleBuscaChange(e.target.value)}
           />
+          <div className="opcao-favoritos" style={{ marginTop: "0.5rem" }}>
+            <input
+              id="somente-favoritos"
+              type="checkbox"
+              checked={somenteFavoritos}
+              onChange={(e) => handleFavoritosChange(e.target.checked)}
+            />
+            <label htmlFor="somente-favoritos" style={{ marginLeft: "0.5rem" }}>Mostrar apenas favoritos</label>
+          </div>
         </div>
 
-        <p id="contador-vereadores" className="contador" aria-live="polite">
-          Mostrando {vereadoresFiltrados.length} de {dadosVereadores.length} vereadores
-        </p>
+        {carregando && (
+          <p className="contador" style={{ color: "#15803d", fontWeight: "bold" }}>
+            Carregando lista de parlamentares via Fetch API...
+          </p>
+        )}
 
-        <div id="grade-vereadores" className="grade-vereadores">
-          {vereadoresFiltrados.map((v) => {
-            const isExp = !!expandidos[v.id];
-            return (
-              <article key={v.id} className="cartao-vereador" id={v.id}>
-                <img className="img-responsiva" src={v.foto} alt={`Foto do Vereador ${v.nome}`} />
-                <div className="info-vereador">
-                  <h3>{v.nome}</h3>
-                  <p className="cargo-vereador"><strong>Cargo:</strong> {v.cargo}</p>
-                  <p className="partido-vereador"><strong>Partido:</strong> {v.partido}</p>
+        {erro && (
+          <p className="contador" style={{ color: "#b91c1c" }}>
+            {erro}
+          </p>
+        )}
 
-                  <button
-                    type="button"
-                    className="botao-primario botao-detalhes"
-                    onClick={() => toggleExpandir(v.id)}
-                    aria-expanded={isExp}
-                  >
-                    {isExp ? "Ocultar Perfil" : "Ver Perfil"}
-                  </button>
+        {!carregando && !erro && (
+          <>
+            <p id="contador-vereadores" className="contador" aria-live="polite">
+              Mostrando {vereadoresFiltrados.length} de {vereadores.length} vereadores
+            </p>
 
-                  {isExp && (
-                    <div className="detalhes-vereador" style={{ marginTop: "0.8rem", textAlign: "left" }}>
-                      <p><strong>E-mail:</strong> {v.email}</p>
-                      <p><strong>Telefone:</strong> {v.telefone}</p>
-                      <p style={{ marginTop: "0.5rem" }}>{v.biografia}</p>
+            <div id="grade-vereadores" className="grade-vereadores">
+              {vereadoresFiltrados.map((v) => {
+                const isFav = favoritos.includes(v.id);
+                const isExp = !!expandidos[v.id];
+
+                return (
+                  <article key={v.id} className="cartao-vereador" id={v.id}>
+                    <img className="img-responsiva" src={v.foto} alt={`Foto do Vereador ${v.nome}`} />
+                    <div className="info-vereador">
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <h3>{v.nome}</h3>
+                        <button
+                          type="button"
+                          className="botao-favorito"
+                          aria-label={isFav ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                          onClick={() => toggleFavorito(v.id)}
+                          style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.3rem" }}
+                        >
+                          {isFav ? "★" : "☆"}
+                        </button>
+                      </div>
+                      <p className="cargo-vereador"><strong>Cargo:</strong> {v.cargo}</p>
+                      <p className="partido-vereador"><strong>Partido:</strong> {v.partido}</p>
+
+                      <button
+                        type="button"
+                        className="botao-primario botao-detalhes"
+                        onClick={() => toggleExpandir(v.id)}
+                        aria-expanded={isExp}
+                      >
+                        {isExp ? "Ocultar Perfil" : "Ver Perfil"}
+                      </button>
+
+                      {isExp && (
+                        <div className="detalhes-vereador" style={{ marginTop: "0.8rem", textAlign: "left" }}>
+                          <p><strong>E-mail:</strong> {v.email}</p>
+                          <p><strong>Telefone:</strong> {v.telefone}</p>
+                          <p style={{ marginTop: "0.5rem" }}>{v.biografia}</p>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                  </article>
+                );
+              })}
+            </div>
+          </>
+        )}
       </section>
     </main>
   );
